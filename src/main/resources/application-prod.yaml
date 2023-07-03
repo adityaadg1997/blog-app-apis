@@ -1,0 +1,6 @@
+#db configuration
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/blog_app_apis

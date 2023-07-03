@@ -1,0 +1,10 @@
+#db configuration
+spring:
+  datasource:
+    name: blog_app_apis
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/blog_app_apis
+  jpa:
+    hibernate:
+    show-sql: true
