@@ -3,4 +3,4 @@ spring:
   datasource:
     username: unzmagfj8xf4lgfu
     password: bX4KrHOxoTBkacTM9bdm
-    url: jdbc:mysql://bn1f5wcdmjwwi4e9v3zp-mysql.services.clever-cloud.com:3306/Blog-App-Apis-MySql
+    url: jdbc:mysql://bn1f5wcdmjwwi4e9v3zp-mysql.services.clever-cloud.com:3306/bn1f5wcdmjwwi4e9v3zp
