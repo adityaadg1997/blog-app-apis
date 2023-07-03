@@ -2,5 +2,5 @@
 spring:
   datasource:
     username: root
-    password: qG7295JMLNiMKt2pHN4Q
-    url: jdbc:mysql://containers-us-west-104.railway.app:7059/railway
+    password: root
+    url: jdbc:mysql://localhost:3306/blog-app-apis
