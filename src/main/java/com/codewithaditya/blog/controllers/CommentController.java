@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping("/api/v1/comments")
 public class CommentController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class CommentController {
 
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     @DeleteMapping("/comment/{commentId}")
-    public ResponseEntity<ApiResponse> createComment(@PathVariable("commentId") Integer commentId){
+    public ResponseEntity<ApiResponse> deleteComment(@PathVariable("commentId") Integer commentId){
         this.commentService.deleteComment(commentId);
 
         return new ResponseEntity<>(new ApiResponse("Comments with CommentId " + commentId + " successfully deleted !!", true), HttpStatus.OK);

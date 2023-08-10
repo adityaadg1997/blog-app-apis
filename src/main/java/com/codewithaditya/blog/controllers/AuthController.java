@@ -1,11 +1,14 @@
 package com.codewithaditya.blog.controllers;
 
+import com.codewithaditya.blog.entitiles.User;
 import com.codewithaditya.blog.exceptions.ApiException;
 import com.codewithaditya.blog.payloads.JWTAuthRequest;
 import com.codewithaditya.blog.payloads.JWTAuthResponse;
 import com.codewithaditya.blog.payloads.UserDto;
 import com.codewithaditya.blog.security.JWTTokenHelper;
 import com.codewithaditya.blog.services.UserService;
+import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +17,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -35,6 +35,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     //login
     @PostMapping("/login")
     public ResponseEntity<JWTAuthResponse> createToken(
@@ -49,6 +52,7 @@ public class AuthController {
 
         JWTAuthResponse response = new JWTAuthResponse();
         response.setToken(token);
+        response.setUser(this.modelMapper.map(userDetails, UserDto.class));
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -66,7 +70,7 @@ public class AuthController {
 
     //register new user
     @PostMapping("/register")
-    public ResponseEntity<UserDto> registerNewUser(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> registerNewUser(@Valid @RequestBody UserDto userDto){
         UserDto registerUser = this.userService.registerNewUser(userDto);
 
         return new ResponseEntity<>(registerUser, HttpStatus.CREATED);

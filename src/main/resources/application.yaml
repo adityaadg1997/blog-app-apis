@@ -21,7 +21,7 @@ spring:
 
 #image upload url
 project:
-  image: C:\D-drive-Workspace\springbootproject\blog-app-apis\images
+  image: .\images
 
 #debug enable
 logging:

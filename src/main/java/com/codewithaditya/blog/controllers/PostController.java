@@ -24,7 +24,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class PostController {
 
     @Autowired
@@ -141,12 +141,12 @@ public class PostController {
     }
 
     //download file
-    @GetMapping(value = "/post/image/{imageName}", produces = MediaType.ALL_VALUE)
+    @GetMapping(value = "/post/image/{imageName}", produces = MediaType.IMAGE_PNG_VALUE)
     public void downloadFile(@PathVariable("imageName") String imageName,
                                           HttpServletResponse response) throws IOException {
 
         InputStream resource = this.fileService.getResource(path, imageName);
-        response.setContentType(MediaType.ALL_VALUE);
+        response.setContentType(MediaType.IMAGE_PNG_VALUE);
         StreamUtils.copy(resource, response.getOutputStream());
     }
 
